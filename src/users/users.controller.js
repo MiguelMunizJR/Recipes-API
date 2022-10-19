@@ -27,10 +27,33 @@ const createUser = async (data) => {
     phone: data.phone,
     birthday: data.birthday,
     gender: data.gender,
-    role: data.role,
     country: data.country,
-    status: data.status,
-    isVerified: data.isVerified,
   });
   return newUser;
+};
+
+const updateUser = async (id, data) => {
+  const result = await Users.update(data, {
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
+const deleteUser = async (id) => {
+  const data = await Users.destroy({
+    where: {
+      id,
+    },
+  });
+  return data;
+};
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser
 };
