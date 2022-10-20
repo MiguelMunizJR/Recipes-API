@@ -22,10 +22,6 @@ const loginUser = async (email, password) => {
   }
 };
 
-loginUser("juan@outlook.com", "juanTorres123")
-  .then((response) => console.log(response))
-  .catch((err) => console.log(err.message));
-
 module.exports = {
   loginUser,
 };

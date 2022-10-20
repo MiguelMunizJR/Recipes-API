@@ -100,7 +100,7 @@ const deleteUser = (req, res) => {
 
   usersController
     .deleteUser(id)
-    .then((respose) => {
+    .then((response) => {
       if (response) {
         res.status(204).json();
       } else {
@@ -116,10 +116,68 @@ const deleteUser = (req, res) => {
     });
 };
 
+//TODO Mi user services:
+
+const getMyUser = (req, res) => {
+  //? req.user contiene la informacion del token desencriptado
+  const id = req.user.id;
+
+  usersController
+    .getUserById(id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err.message });
+    });
+};
+
+const patchMyUser = (req, res) => {
+  const id = req.user.id;
+  const { firstName, lastName, phone, gender, country } = req.body;
+
+  usersController
+    .updateUser(id, {
+      firstName,
+      lastName,
+      phone,
+      gender,
+      country,
+    })
+    .then(() => {
+      res.status(200).json({
+        message: `User edited succesfully!`,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message,
+      });
+    });
+};
+
+const deleteMyUser = (req, res) => {
+  const id = req.user.id;
+
+  usersController
+    .deleteUser(id)
+    .then(() => {
+      res.status(204).json();
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message,
+      });
+    });
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   registerUser,
   patchUser,
   deleteUser,
+  getMyUser,
+  patchMyUser,
+  deleteMyUser,
 };
