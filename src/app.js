@@ -1,6 +1,5 @@
 //* Dependencies
 const express = require("express");
-const router = require("./users/users.router");
 const db = require("./utils/database");
 
 //* Routes
@@ -17,7 +16,7 @@ app.use(express.json());
 db.authenticate()
   .then((res) => console.log("Database Autenticate!"))
   .catch((err) => console.log(err));
-  
+
 db.sync()
   .then((res) => console.log("Database Synced!"))
   .catch((err) => console.log(err));

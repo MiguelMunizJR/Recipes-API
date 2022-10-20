@@ -16,11 +16,15 @@ const loginUser = async (email, password) => {
     if (verifyPass) {
       return user;
     }
-    return false;
+      return false;
   } catch (err) {
     return false;
   }
 };
+
+loginUser("juan@outlook.com", "juanTorres123")
+  .then((response) => console.log(response))
+  .catch((err) => console.log(err.message));
 
 module.exports = {
   loginUser,

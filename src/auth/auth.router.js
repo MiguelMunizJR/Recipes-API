@@ -4,16 +4,17 @@
 //? Recovery password
 //? Verify User
 
-const router = require('express').Router();
-const { registerUser } = require('../users/users.services');
+const router = require("express").Router();
+const { registerUser } = require("../users/users.services");
+const authServices = require("./auth.services");
 
 //* Prefijo
-//! /api/v1/auth
+//TODO /api/v1/auth
 
+//? Ruta de register
 router.post("/register", registerUser);
 
-
-
-
+//? Ruta de login
+router.post("/login", authServices.login);
 
 module.exports = router;

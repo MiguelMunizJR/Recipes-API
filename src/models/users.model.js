@@ -45,7 +45,7 @@ const Users = db.define("users", {
   role: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'normal'
+    defaultValue: "normal",
   },
   country: {
     type: DataTypes.STRING,
@@ -53,12 +53,13 @@ const Users = db.define("users", {
   status: {
     type: DataTypes.STRING,
     allowNull: false,
+    defaultValue: "active",
   },
   isVerified: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: false,
-    field: 'is_verified'
+    field: "is_verified",
   },
 });
 
