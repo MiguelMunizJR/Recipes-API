@@ -1,6 +1,6 @@
 //? Dependencies
 const uuid = require("uuid");
-const Users = require("../models/users.models");
+const Users = require("../models/users.model");
 const hashPass = require("../utils/crypto").hashPass;
 
 const getAllUsers = async () => {
@@ -50,10 +50,22 @@ const deleteUser = async (id) => {
   return data;
 };
 
+//?
+
+const getUserByEmail = async (email) => {
+  const data = await Users.findOne({
+    where: {
+      email,
+    },
+  });
+  return data;
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
+  getUserByEmail,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
 };

@@ -1,5 +1,4 @@
 //? Dependencies
-const { response } = require("express");
 const usersController = require("./users.controller");
 
 const getAllUsers = (req, res) => {

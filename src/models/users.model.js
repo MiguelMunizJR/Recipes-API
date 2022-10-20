@@ -1,5 +1,5 @@
+//? Dependencies
 const db = require("../utils/database");
-
 const DataTypes = require("sequelize").DataTypes;
 
 const Users = db.define("users", {
