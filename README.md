@@ -22,3 +22,7 @@ Orden
 6. controllers
 7. services
 8. routes
+
+Empezar proyecto
+1. npm install
+2. .env
