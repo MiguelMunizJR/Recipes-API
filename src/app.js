@@ -1,6 +1,7 @@
 //* Dependencies
 const express = require("express");
 const db = require("./utils/database");
+const initModels = require('./models/initModel');
 
 //* Routes
 const port = require("./config").port;
@@ -20,6 +21,9 @@ db.authenticate()
 db.sync()
   .then((res) => console.log("Database Synced!"))
   .catch((err) => console.log(err));
+
+//* Init Models
+initModels();
 
 //* Prefijos:
 app.use("/api/v1/users", userRouter);

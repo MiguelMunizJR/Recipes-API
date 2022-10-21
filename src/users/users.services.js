@@ -160,9 +160,11 @@ const deleteMyUser = (req, res) => {
   const id = req.user.id;
 
   usersController
-    .deleteUser(id)
+    .updateUser(id, { status: "inactive" })
     .then(() => {
-      res.status(204).json();
+      res.status(200).json({
+        message: `Your user was deleted succesfully!`,
+      });
     })
     .catch((err) => {
       res.status(400).json({

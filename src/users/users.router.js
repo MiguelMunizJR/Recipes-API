@@ -1,5 +1,8 @@
 const usersServices = require("./users.services");
 
+//* Middlewares:
+const adminValidate = require('../middlewares/role.middleware');
+
 //* Proteger ruta '/'
 const passport = require("passport");
 require("../middlewares/auth.middleware")(passport);
@@ -42,7 +45,17 @@ router
 router
   .route("/:id")
   .get(usersServices.getUserById)
-  .patch(usersServices.patchUser)
-  .delete(usersServices.deleteUser);
+
+  //TODO /api/v1/users/:id RUTAS PROTEGIDAS!
+  .patch(
+    passport.authenticate("jwt", { session: false }),
+    adminValidate,
+    usersServices.patchUser
+  )
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    adminValidate,
+    usersServices.deleteUser
+  );
 
 module.exports = router;
