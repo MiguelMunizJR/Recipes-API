@@ -3,14 +3,13 @@ const express = require("express");
 const db = require("./utils/database");
 const initModels = require('./models/initModel');
 
-//* Routes
+//* Routes Dependencies
 const port = require("./config").port;
 const userRouter = require("./users/users.router");
 const authRouter = require('./auth/auth.router');
 
 //* Initial Config
 const app = express();
-
 app.use(express.json());
 
 //* Autenticacion y sincronizacion de nuestra DB
@@ -25,7 +24,7 @@ db.sync()
 //* Init Models
 initModels();
 
-//* Prefijos:
+//* Routes:
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 
@@ -36,6 +35,7 @@ app.get("/", (req, res) => {
   });
 });
 
+//* Listen app at port: 
 app.listen(port, () => {
   console.log(`Server started at port ${port}`);
 });
