@@ -22,6 +22,8 @@ const loginUser = async (email, password) => {
   }
 };
 
+console.log(loginUser("miguel@academlo.com", "miguel123"));
+
 module.exports = {
   loginUser,
 };
