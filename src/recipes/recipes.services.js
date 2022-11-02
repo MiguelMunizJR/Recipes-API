@@ -73,8 +73,38 @@ const createRecipe = (req, res) => {
   }
 };
 
-const updateRecipe = (req, res) => {
-  
+const patchRecipe = (req, res) => {
+  const { title, description, urlImage, time, portions, origin, categoryId } =
+    req.body;
+  const id = req.params.id;
+
+  recipesControllers
+    .updateRecipe(id, {
+      title,
+      description,
+      urlImage,
+      time,
+      portions,
+      origin,
+      categoryId,
+    })
+    .then((response) => {
+      if (response[0]) {
+        res.status(200).json({
+          message: `Recipe with ID: ${id}, edited succesfully`,
+        });
+      } else {
+        res.status(404).json({
+          message: "invalid ID",
+          id,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message,
+      });
+    });
 };
 
 const deleteRecipe = (req, res) => {
@@ -102,6 +132,6 @@ module.exports = {
   getAllRecipes,
   getRecipeById,
   createRecipe,
-  updateRecipe,
+  patchRecipe,
   deleteRecipe,
 };
