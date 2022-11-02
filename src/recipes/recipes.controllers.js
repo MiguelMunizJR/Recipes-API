@@ -1,5 +1,5 @@
 const Recipes = require("../models/recipes.model");
-const uuid = require("uuid").v4;
+const uuid = require("uuid");
 
 //? Obtener todas las recetas
 const getAllRecipes = async () => {
