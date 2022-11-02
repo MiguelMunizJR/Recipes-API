@@ -1,5 +1,6 @@
 //* Dependencies
 const express = require("express");
+const cors = require("cors");
 const db = require("./utils/database");
 const initModels = require("./models/initModel");
 
@@ -12,6 +13,7 @@ const categoriesRouter = require("./categories/categories.router");
 //* Initial Config
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //* Autenticacion y sincronizacion de nuestra DB
 db.authenticate()
