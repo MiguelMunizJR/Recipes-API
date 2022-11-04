@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const usersServices = require("./users.services");
-const adminValidate = require('../middlewares/role.middleware');
+const adminValidate = require("../middlewares/role.middleware");
+const { getUserRecipes } = require("../recipes/recipes.services");
 
 //* Proteger ruta '/'
 const passport = require("passport");
@@ -31,9 +32,12 @@ router
     usersServices.deleteMyUser
   );
 
-//TODO /api/v1/users/me
-
-
+//TODO /api/v1/users/me/my_recipes
+router.get(
+  "/me/my_recipes",
+  passport.authenticate("jwt", { session: false }),
+  getUserRecipes
+);
 
 //TODO /api/v1/users/:id
 router
