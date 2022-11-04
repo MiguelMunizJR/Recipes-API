@@ -1,4 +1,4 @@
-const ingredientsControllers = require("./ingredients.controller");
+const ingredientsControllers = require("./ingredients.controllers");
 
 const getAllIngredients = (req, res) => {
   ingredientsControllers

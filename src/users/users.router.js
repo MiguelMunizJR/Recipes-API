@@ -1,17 +1,10 @@
+const router = require("express").Router();
 const usersServices = require("./users.services");
-
-//* Middlewares:
 const adminValidate = require('../middlewares/role.middleware');
 
 //* Proteger ruta '/'
 const passport = require("passport");
 require("../middlewares/auth.middleware")(passport);
-
-//* Inicializamos router
-const router = require("express").Router();
-
-//* Rutas raiz
-//TODO Proteger ruta '/' con passport.authenticate.
 
 //! passport.authenticate('jwt', {session: false}),
 //TODO /api/v1/users
@@ -38,9 +31,10 @@ router
     usersServices.deleteMyUser
   );
 
-//* Rutas dinamicas por ID
-//? 'route' ayuda a hacer distintas peticiones HTTP a una ruta
-//? en especifico.
+//TODO /api/v1/users/me
+
+
+
 //TODO /api/v1/users/:id
 router
   .route("/:id")
