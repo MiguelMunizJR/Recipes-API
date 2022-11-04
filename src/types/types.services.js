@@ -23,7 +23,7 @@ const getTypeById = (req, res) => {
         res.status(200).json(response);
       } else {
         res.status(400).json({
-          message: `ID: ${id}, invalid`,
+          message: `ID: ${id}, not exist`,
         });
       }
     })
@@ -50,7 +50,7 @@ const postType = (req, res) => {
       });
   } else {
     res.status(400).json({
-      message: "Missing Data",
+      message: "Invalid Data",
       fields: {
         name: "string",
       },

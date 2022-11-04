@@ -1,22 +1,20 @@
-//* Dependencies
 const express = require("express");
 const cors = require("cors");
 const db = require("./utils/database");
 const initModels = require("./models/initModel");
 
-//* Routes Dependencies
+
 const port = require("./config").port;
 const authRouter = require("./auth/auth.router");
 const userRouter = require("./users/users.router");
 const categoriesRouter = require("./categories/categories.router");
 const recipesRouter = require("./recipes/recipes.router");
 
-//* Initial Config
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-//* Autenticacion y sincronizacion de nuestra DB
 db.authenticate()
   .then(() => console.log("Database Autenticate!"))
   .catch((err) => console.log(err));
@@ -41,7 +39,6 @@ app.get("/", (req, res) => {
   });
 });
 
-//* Listen app at port:
 app.listen(port, () => {
   console.log(`Server started at port ${port}`);
 });

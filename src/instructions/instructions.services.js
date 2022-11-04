@@ -24,6 +24,7 @@ const getInstructionById = (req, res) => {
       } else {
         res.status(404).json({
           message: "Invalid ID",
+          instructionId
         });
       }
     })
@@ -78,6 +79,7 @@ const patchInstruction = (req, res) => {
       } else {
         res.status(404).json({
           message: "Invalid ID",
+          instructionId
         });
       }
     })
@@ -99,6 +101,7 @@ const deleteInstruction = (req, res) => {
       } else {
         res.status(404).json({
           message: "Invalid ID",
+          instructionId
         });
       }
     })

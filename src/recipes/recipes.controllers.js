@@ -1,9 +1,42 @@
 const Recipes = require("../models/recipes.model");
+const Users = require("../models/users.model");
+const Categories = require("../models/categories.model");
+const Instructions = require("../models/instructions.model");
+const Ingredients = require("../models/ingredients.model");
+const Types = require("../models/types.model");
+const RecipesIngredients = require("../models/recipes_ingredients.model");
 const uuid = require("uuid");
 
 //? Obtener todas las recetas
 const getAllRecipes = async () => {
-  const data = await Recipes.findAll();
+  const data = await Recipes.findAll({
+    attributes: {
+      exclude: ["userId", "categoryId", "createdAt", "updatedAt"],
+    },
+    include: [
+      {
+        model: Categories,
+      },
+      {
+        model: Users,
+        attributes: ["id", "firstName", "lastName"],
+      },
+      {
+        model: Instructions,
+        attributes: ["description", "step"],
+      },
+      {
+        model: RecipesIngredients,
+        //? Anidando joins.
+        include: {
+          model: Ingredients,
+          include: {
+            model: Types,
+          },
+        },
+      },
+    ],
+  });
   return data;
 };
 
@@ -13,6 +46,32 @@ const getRecipeById = async (id) => {
     where: {
       id,
     },
+    attributes: {
+      exclude: ["userId", "categoryId", "createdAt", "updatedAt"],
+    },
+    include: [
+      {
+        model: Categories,
+      },
+      {
+        model: Users,
+        attributes: ["id", "firstName", "lastName"],
+      },
+      {
+        model: Instructions,
+        attributes: ["description", "step"],
+      },
+      {
+        model: RecipesIngredients,
+        //? Anidando joins.
+        include: {
+          model: Ingredients,
+          include: {
+            model: Types,
+          },
+        },
+      },
+    ],
   });
   return data;
 };

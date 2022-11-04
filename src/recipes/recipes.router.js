@@ -15,7 +15,7 @@ router
   );
 
 router
-  .route("/:recipe_id")
+  .route("/:id")
   .get(recipesServices.getRecipeById)
   .patch(
     passport.authenticate("jwt", { session: false }),
